@@ -34,7 +34,11 @@ def base_template(content):
     """
 
 def get_subject_and_body(type_, name, period, reason="", app_url="", manager_name="Manager"):
-    submitted_date = datetime.now().strftime("%B %d, %Y at %I:%M %p")
+   
+    from datetime import datetime, timezone, timedelta
+    IST = timezone(timedelta(hours=5, minutes=30))
+    submitted_date = datetime.now(IST).strftime("%B %d, %Y at %I:%M %p IST")
+   
     review_link = f'<a href="{app_url}" style="color:#1a73e8; font-weight:bold;">Review Timesheet →</a>' if app_url else ""
     request_link = f'<a href="{app_url}" style="color:#1a73e8; font-weight:bold;">Review Request →</a>' if app_url else ""
 
